@@ -166,39 +166,39 @@ void WriteConfig()
 
   EEPROM.write(128, config.dhcp);
 
-  EEPROM.write(144, config.ip[0]);
-  EEPROM.write(145, config.ip[1]);
-  EEPROM.write(146, config.ip[2]);
-  EEPROM.write(147, config.ip[3]);
+  EEPROM.write(140, config.ip[0]);
+  EEPROM.write(141, config.ip[1]);
+  EEPROM.write(142, config.ip[2]);
+  EEPROM.write(143, config.ip[3]);
 
-  EEPROM.write(148, config.netmask[0]);
-  EEPROM.write(149, config.netmask[1]);
-  EEPROM.write(150, config.netmask[2]);
-  EEPROM.write(151, config.netmask[3]);
+  EEPROM.write(144, config.netmask[0]);
+  EEPROM.write(145, config.netmask[1]);
+  EEPROM.write(146, config.netmask[2]);
+  EEPROM.write(147, config.netmask[3]);
 
-  EEPROM.write(152, config.gateway[0]);
-  EEPROM.write(153, config.gateway[1]);
-  EEPROM.write(154, config.gateway[2]);
-  EEPROM.write(155, config.gateway[3]);
+  EEPROM.write(148, config.gateway[0]);
+  EEPROM.write(149, config.gateway[1]);
+  EEPROM.write(150, config.gateway[2]);
+  EEPROM.write(151, config.gateway[3]);
 
-  EEPROM.write(156, config.mqtt_broker_addr[0]);
-  EEPROM.write(157, config.mqtt_broker_addr[1]);
-  EEPROM.write(158, config.mqtt_broker_addr[2]);
-  EEPROM.write(159, config.mqtt_broker_addr[3]);
+  EEPROM.write(152, config.mqtt_broker_addr[0]);
+  EEPROM.write(153, config.mqtt_broker_addr[1]);
+  EEPROM.write(154, config.mqtt_broker_addr[2]);
+  EEPROM.write(155, config.mqtt_broker_addr[3]);
 
-  WriteStringToEEPROM(164, config.ssid);
-  WriteStringToEEPROM(196, config.password);
+  WriteStringToEEPROM(157, config.ssid);
+  WriteStringToEEPROM(190, config.password);
 
-  WriteStringToEEPROM(262, config.mqtt_broker_port);
-  WriteStringToEEPROM(270, config.master_msb);
-  WriteStringToEEPROM(330, config.master_lsb);
-  EEPROM.write(350, config.learn_mode);
-  WriteStringToEEPROM(366, config.serial);
+  WriteStringToEEPROM(255, config.master_msb);
+  WriteStringToEEPROM(266, config.master_lsb);
+  WriteStringToEEPROM(277, config.serial);
+  EEPROM.write(288, config.learn_mode);
 
-  WriteStringToEEPROM(375, config.mqtt_broker_client_id);
-  WriteStringToEEPROM(400, config.mqtt_broker_username);
-  WriteStringToEEPROM(450, config.mqtt_broker_password);
-  WriteStringToEEPROM(1300, config.mqtt_devicetopic);
+  WriteStringToEEPROM(290, config.mqtt_broker_port);
+  WriteStringToEEPROM(300, config.mqtt_broker_client_id);
+  WriteStringToEEPROM(350, config.mqtt_broker_username);
+  WriteStringToEEPROM(400, config.mqtt_broker_password);
+  WriteStringToEEPROM(450, config.mqtt_devicetopic);
 
   WriteStringToEEPROM(500, config.channel_name[0]);
   WriteStringToEEPROM(550, config.channel_name[1]);
@@ -217,7 +217,6 @@ void WriteConfig()
   WriteStringToEEPROM(1200, config.channel_name[14]);
   WriteStringToEEPROM(1250, config.channel_name[15]);
 
-  EEPROM.commit();
   delay(1000);
 } // void WriteConfig
 
@@ -249,34 +248,35 @@ boolean ReadConfig()
   if (config.cfgVersion <= 2) // read config parts up to version 2
   {
     config.dhcp = EEPROM.read(128);
-    config.ip[0] = EEPROM.read(144);
-    config.ip[1] = EEPROM.read(145);
-    config.ip[2] = EEPROM.read(146);
-    config.ip[3] = EEPROM.read(147);
-    config.netmask[0] = EEPROM.read(148);
-    config.netmask[1] = EEPROM.read(149);
-    config.netmask[2] = EEPROM.read(150);
-    config.netmask[3] = EEPROM.read(151);
-    config.gateway[0] = EEPROM.read(152);
-    config.gateway[1] = EEPROM.read(153);
-    config.gateway[2] = EEPROM.read(154);
-    config.gateway[3] = EEPROM.read(155);
-    config.mqtt_broker_addr[0] = EEPROM.read(156);
-    config.mqtt_broker_addr[1] = EEPROM.read(157);
-    config.mqtt_broker_addr[2] = EEPROM.read(158);
-    config.mqtt_broker_addr[3] = EEPROM.read(159);
+    config.ip[0] = EEPROM.read(140);
+    config.ip[1] = EEPROM.read(141);
+    config.ip[2] = EEPROM.read(142);
+    config.ip[3] = EEPROM.read(143);
+    config.netmask[0] = EEPROM.read(144);
+    config.netmask[1] = EEPROM.read(145);
+    config.netmask[2] = EEPROM.read(146);
+    config.netmask[3] = EEPROM.read(147);
+    config.gateway[0] = EEPROM.read(148);
+    config.gateway[1] = EEPROM.read(149);
+    config.gateway[2] = EEPROM.read(150);
+    config.gateway[3] = EEPROM.read(151);
+    config.mqtt_broker_addr[0] = EEPROM.read(152);
+    config.mqtt_broker_addr[1] = EEPROM.read(153);
+    config.mqtt_broker_addr[2] = EEPROM.read(154);
+    config.mqtt_broker_addr[3] = EEPROM.read(155);
 
-    config.ssid = ReadStringFromEEPROM(164, 32);
-    config.password = ReadStringFromEEPROM(196, 64);
-    config.mqtt_broker_port = ReadStringFromEEPROM(262, 6);
-    config.master_msb = ReadStringFromEEPROM(270, 10);
-    config.master_lsb = ReadStringFromEEPROM(330, 10);
-    config.learn_mode = EEPROM.read(350);
-    config.serial = ReadStringFromEEPROM(366, 10);
+    config.ssid = ReadStringFromEEPROM(157, 32);
+    config.password = ReadStringFromEEPROM(190, 64);
+    
+    config.master_msb = ReadStringFromEEPROM(255, 10);
+    config.master_lsb = ReadStringFromEEPROM(266, 10);
+    config.serial = ReadStringFromEEPROM(277, 10);
+    config.learn_mode = EEPROM.read(288);
 
-    config.mqtt_broker_client_id = ReadStringFromEEPROM(375, 25);
-    config.mqtt_broker_username = ReadStringFromEEPROM(400, 25);
-    config.mqtt_broker_password = ReadStringFromEEPROM(450, 25);
+    config.mqtt_broker_port = ReadStringFromEEPROM(290, 6);
+    config.mqtt_broker_client_id = ReadStringFromEEPROM(300, 25);
+    config.mqtt_broker_username = ReadStringFromEEPROM(350, 25);
+    config.mqtt_broker_password = ReadStringFromEEPROM(400, 25);
 
     config.channel_name[0] = ReadStringFromEEPROM(500, 25);
     config.channel_name[1] = ReadStringFromEEPROM(550, 25);
@@ -297,7 +297,7 @@ boolean ReadConfig()
   }
   if (config.cfgVersion == 2)
   { // read config parts of version 2
-    config.mqtt_devicetopic = ReadStringFromEEPROM(1300, 20);
+    config.mqtt_devicetopic = ReadStringFromEEPROM(450, 20);
   } else
   { // upgrade config to version 2
     config.mqtt_devicetopic = "jarolift"; // default devicetopic
