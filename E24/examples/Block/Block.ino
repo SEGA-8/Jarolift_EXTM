@@ -17,10 +17,10 @@ void setup() {
 
     Wire.begin(0,2); //D3 and D4 on ESP8266
     //write a structured block to the suplied address
-    e24.writeBlock(CONFIG_ADDR, config);
+    e24.put(CONFIG_ADDR, config);
 
     //read back the block into the variable
-    e24.readBlock(CONFIG_ADDR, config);
+    e24.get(CONFIG_ADDR, config);
 }
 
 void loop() {}
