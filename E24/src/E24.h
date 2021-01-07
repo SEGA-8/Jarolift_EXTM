@@ -49,12 +49,12 @@ public:
 
 	uint16_t fill(uint16_t addr, uint8_t data, uint16_t length);
 
-	template <typename T> uint16_t readBlock(uint16_t addr, T& data)
+	template <typename T> uint16_t get(uint16_t addr, T& data)
 	{
 		return read(addr, (uint8_t*)&data, sizeof(data));
 	}
 
-	template <typename T> uint16_t writeBlock(uint16_t addr, const T& data)
+	template <typename T> uint16_t put(uint16_t addr, const T& data)
 	{
 		return write(addr, (const uint8_t*)&data, sizeof(data));
 	}
